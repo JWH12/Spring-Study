@@ -125,14 +125,14 @@ class MemberRepositoryTest {
                 Member.builder()
 //                        .id(2L)
                         .name("홍길동")
-                        .email("ryukwansun@thejoeun.com")
+//                        .email("ryukwansun@thejoeun.com")
                         .build(),
                 matcher
         );
-        memberRepository.findAll(memberExample).forEach(System.out::println);
+//        memberRepository.findAll(memberExample).forEach(System.out::println);
 
-        Example<Member> memberExample2 = Example.of(Member.builder().email("mars@thejeon.com").build());
-
+        Example<Member> memberExample2 = Example.of(Member.builder().email("mars@thejoeun.com").build());
+        memberRepository.findAll(memberExample2).forEach(System.out::println);
     }
 
     @DisplayName("semiProject sqlmapper관련 xml sql코드를 jpa 자바코드로 변환 테스트")
