@@ -4,3 +4,6 @@ ___________.__                  ____.
   |    |   |   Y  \  ___/  /\__|    (  <_> )  ___/|  |  /   |  \
   |____|   |___|  /\___  > \________|\____/ \___  >____/|___|  /
                 \/     \/                       \/           \/
+${application.version}
+spring-boot version: ${spring-boot.version}
+${application.title}

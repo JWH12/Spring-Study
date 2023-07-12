@@ -6,7 +6,8 @@ import java.util.List;
 
 public class User {
     private String name;
-    @JsonProperty("oldage")
+
+    @JsonProperty("age")
     private int age;
 
     private List<Car> userCars;
