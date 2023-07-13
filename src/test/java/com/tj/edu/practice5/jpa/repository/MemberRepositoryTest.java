@@ -185,4 +185,19 @@ class MemberRepositoryTest {
                 .build();
         memberRepository.save(member);
     }
+
+    @Test
+    void jpaEventListenerTest() {
+        Member member = Member.builder()
+                .name("홍승대")
+                .email("imila@naver.com")
+                .build();
+        memberRepository.save(member);      // insert(PrePersist, PostPersist)
+
+        Member member2 = memberRepository.findById(1L).orElseThrow(RuntimeException::new); // select(PostLoad)
+        member2.setName("박근혜");
+        memberRepository.save(member2);     // update(PreUpdate, PostUpdate)
+
+        memberRepository.deleteById(3L);    // delete(PreRemove, PostRemove)
+    }
 }

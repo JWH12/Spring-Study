@@ -17,7 +17,8 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "member")
-public class Member {
+@EntityListeners(value = { MyEntityListener.class, MemberEntityListener.class })
+public class Member implements Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue
@@ -33,10 +34,7 @@ public class Member {
 //    @Transient
     private Integer test2;
 
-//    @Column(updatable = false)
     private LocalDateTime createAt;
-
-    @Column(columnDefinition = "datetime(6)")
     private LocalDateTime updateAt;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -50,4 +48,25 @@ public class Member {
 //    @Column(columnDefinition = "varchar(100)")
     @Enumerated(value = EnumType.STRING)
     private Nation nation;
+
+    @PreRemove
+    public void preDelete1() {
+        System.out.println(">>> preDelete1()");
+    }
+    @PostPersist
+    public void afterInsert1() {
+        System.out.println(">>> afterInsert1()");
+    }
+    @PostUpdate
+    public void afterUpdate1() {
+        System.out.println(">>> afterUpdate1()");
+    }
+    @PostRemove
+    public void afterDelete1() {
+        System.out.println(">>> afterDelete1()");
+    }
+    @PostLoad
+    public void afterSelect1() {
+        System.out.println(">>> afterSelect1()");
+    }
 }
