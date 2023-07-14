@@ -5,33 +5,26 @@ import com.tj.edu.practice5.jpa.util.SpringBeanUtils;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostUpdate;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-
-@Component
+//@Component
 public class MemberEntityListener {
-    @Autowired
-    private MemberLogHistoryRepository memberLogHistoryRepository;
-
-    @PostUpdate
+//    @Autowired
+//    private MemberLogHistoryRepository memberLogHistoryRepository;
     @PostPersist
-    public void postPersistAndPostUpdate(Object o) {
-//        MemberLogHistoryRepository memberLogHistoryRepository
-//                = SpringBeanUtils.getBean(MemberLogHistoryRepository.class);
+    @PostUpdate
+    public void afterMemberSave(Object o) {
+        MemberLogHistoryRepository memberLogHistoryRepository = SpringBeanUtils.getBean(MemberLogHistoryRepository.class);
 
         Member member = (Member) o;
 
         MemberLogHistory memberLogHistory = MemberLogHistory.builder()
-                .memberId(member.getId())
+                .member(member)
                 .name(member.getName())
                 .email(member.getEmail())
-                .male(member.getMale())
                 .build();
         memberLogHistoryRepository.save(memberLogHistory);
-
     }
 }

@@ -2,7 +2,7 @@ package com.tj.edu.practice5.jpa.model;
 
 import java.time.LocalDateTime;
 
-public interface Auditable {
+public interface TimeAuditable {
     LocalDateTime getCreateAt();
     LocalDateTime getUpdateAt();
 
